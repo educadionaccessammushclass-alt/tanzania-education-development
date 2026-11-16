@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102d40">
+<title>Tanzania National Education & Community Development Platform</title>
+<meta name="description" content="An independent national platform supporting education access, research, programme assessment, innovation and community development across all 31 regions of Tanzania.">
+
+<style>
+:root {
+  --navy:#102d40;
+  --blue:#194d68;
+  --green:#247a50;
+  --gold:#d7a83f;
+  --light:#f2f6f8;
+  --white:#ffffff;
+  --text:#263746;
+  --muted:#71808c;
+  --border:#dce5e9;
+  --shadow:0 5px 20px rgba(16,45,64,.08);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--light);
+  color:var(--text);
+  line-height:1.55;
+}
+header{
+  background:linear-gradient(120deg,#102d40,#194d68);
+  color:white;
+  padding:25px 5%;
+}
+.header-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.brand{font-size:13px;letter-spacing:2px;color:#e9c66c;font-weight:bold}
+header h1{font-size:clamp(23px,4vw,36px);margin:12px 0 5px}
+header p{margin:5px 0;color:#e1ebef}
+.header-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
+}
+button,select,input,textarea{font:inherit}
+button{cursor:pointer}
+.lang-btn{
+  background:var(--gold);
+  border:0;
+  color:#102d40;
+  padding:9px 16px;
+  border-radius:6px;
+  font-weight:bold;
+}
+nav{
+  background:#fff;
+  padding:12px 5%;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  box-shadow:var(--shadow);
+}
+nav a{
+  color:var(--navy);
+  text-decoration:none;
+  padding:8px 13px;
+  border-radius:5px;
+  font-size:14px;
+  font-weight:bold;
+}
+nav a:hover{background:#eaf1f4}
+.container{width:92%;max-width:1250px;margin:25px auto}
+.section-title{color:var(--navy);margin:0 0 15px}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(175px,1fr));
+  gap:15px;
+  margin-bottom:28px;
+}
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:19px;
+  box-shadow:var(--shadow);
+}
+.card small{color:var(--muted);font-weight:bold}
+.card h2{font-size:29px;margin:7px 0;color:var(--navy)}
+.card p{margin:0;font-size:13px;color:var(--muted)}
+.panel{
+  background:white;
+  padding:23px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  box-shadow:var(--shadow);
+  margin-bottom:25px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+label{font-weight:bold;font-size:13px;color:var(--navy)}
+input,select,textarea{
+  width:100%;
+  padding:11px;
+  border:1px solid #cbd7dd;
+  border-radius:6px;
+  background:white;
+  color:var(--text);
+  outline:none;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 2px #194d681c;
+}
+textarea{min-height:95px;resize:vertical}
+.help{font-size:12px;color:var(--muted)}
+.primary{
+  background:var(--green);
+  color:white;
+  border:0;
+  padding:12px 20px;
+  border-radius:6px;
+  font-weight:bold;
+}
+.secondary{
+  background:#eaf0f3;
+  color:var(--navy);
+  border:1px solid var(--border);
+  padding:9px 14px;
+  border-radius:6px;
+}
+.danger{
+  background:#fff0ef;
+  color:#a52c27;
+  border:1px solid #f0ceca;
+  padding:8px 11px;
+  border-radius:5px;
+}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.notice{
+  background:#fff8e8;
+  border-left:4px solid var(--gold);
+  padding:12px 15px;
+  margin:15px 0;
+  font-size:13px;
+}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:750px}
+th,td{
+  text-align:left;
+  padding:12px;
+  border-bottom:1px solid var(--border);
+  font-size:13px;
+  vertical-align:top;
+}
+th{background:#f1f5f7;color:var(--navy)}
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+  background:#eaf0f3;
+}
+.status-proposed{background:#fff3d8;color:#855b08}
+.status-assessed{background:#e6efff;color:#28568b}
+.status-active{background:#e2f5e9;color:#20643b}
+.status-completed{background:#e9e8f5;color:#55458b}
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:15px;
+}
+.filters>*{flex:1;min-width:170px}
+footer{
+  background:var(--navy);
+  color:white;
+  text-align:center;
+  padding:28px 15px;
+  margin-top:40px;
+  font-size:13px;
+}
+footer strong{color:#e9c66c}
+.empty{text-align:center;color:var(--muted);padding:25px}
+.hidden{display:none!important}
+@media(max-width:650px){
+  .form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .panel{padding:16px}
+  nav{gap:2px}
+  nav a{padding:8px;font-size:12px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="brand">TANZANIA • EDUCATION • DEVELOPMENT</div>
+    <button class="lang-btn" id="languageButton" onclick="toggleLanguage()">Kiswahili</button>
+  </div>
+
+  <h1 data-en="Tanzania National Education & Community Development Platform"
+      data-sw="Jukwaa la Kitaifa la Elimu na Maendeleo ya Jamii Tanzania">
+    Tanzania National Education & Community Development Platform
+  </h1>
+
+  <p data-en="Advancing inclusive education, research, innovation and sustainable community development."
+     data-sw="Kukuza elimu jumuishi, utafiti, ubunifu na maendeleo endelevu ya jamii.">
+    Advancing inclusive education, research, innovation and sustainable community development.
+  </p>
+
+  <div class="header-bottom">
+    <span data-en="National coverage: 31 regions of Tanzania"
+          data-sw="Wigo wa kitaifa: Mikoa 31 ya Tanzania">
+      National coverage: 31 regions of Tanzania
+    </span>
+    <span>Education • Research • Innovation • Community</span>
+  </div>
+</header>
+
+<nav>
+  <a href="#dashboard" data-en="Dashboard" data-sw="Dashibodi">Dashboard</a>
+  <a href="#register" data-en="Register Programme" data-sw="Sajili Programu">Register Programme</a>
+  <a href="#records" data-en="Programme Records" data-sw="Rekodi za Programu">Programme Records</a>
+  <a href="#about" data-en="About" data-sw="Kuhusu">About</a>
+</nav>
+
+<main class="container">
+
+<!-- DASHBOARD -->
+
+<section id="dashboard">
+  <h2 class="section-title" data-en="National Programme Dashboard"
+      data-sw="Dashibodi ya Kitaifa ya Programu">National Programme Dashboard</h2>
+
+  <div class="cards">
+    <div class="card">
+      <small data-en="Total Programmes" data-sw="Jumla ya Programu">Total Programmes</small>
+      <h2 id="totalCount">0</h2>
+      <p data-en="All registered programmes" data-sw="Programu zote zilizosajiliwa">All registered programmes</p>
+    </div>
+    <div class="card">
+      <small data-en="Proposed" data-sw="Zilizopendekezwa">Proposed</small>
+      <h2 id="proposedCount">0</h2>
+      <p data-en="Awaiting assessment" data-sw="Zinasubiri tathmini">Awaiting assessment</p>
+    </div>
+    <div class="card">
+      <small data-en="Assessed" data-sw="Zilizotathminiwa">Assessed</small>
+      <h2 id="assessedCount">0</h2>
+      <p data-en="Assessment recorded" data-sw="Tathmini imerekodiwa">Assessment recorded</p>
+    </div>
+    <div class="card">
+      <small data-en="Active" data-sw="Zinazoendelea">Active</small>
+      <h2 id="activeCount">0</h2>
+      <p data-en="Implementation in progress" data-sw="Utekelezaji unaendelea">Implementation in progress</p>
+    </div>
+    <div class="card">
+      <small data-en="Completed" data-sw="Zilizokamilika">Completed</small>
+      <h2 id="completedCount">0</h2>
+      <p data-en="Completed programmes" data-sw="Programu zilizokamilika">Completed programmes</p>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTRATION -->
+
+<section id="register" class="panel">
+  <h2 class="section-title" data-en="Programme Registration & Assessment"
+      data-sw="Usajili wa Programu na Tathmini">Programme Registration & Assessment</h2>
+
+  <div class="notice" data-en="Register programmes by region. Pemba's four districts are provided. For other regions, administrative-area information must be verified before official lists are added."
+       data-sw="Sajili programu kwa mkoa. Wilaya nne za Pemba zimeorodheshwa. Kwa mikoa mingine, taarifa za kiutawala lazima zithibitishwe kabla ya kuongeza orodha rasmi.">
+    Register programmes by region. Pemba's four districts are provided. For other regions, administrative-area information must be verified before official lists are added.
+  </div>
+
+  <form id="programmeForm">
+    <input type="hidden" id="editId">
+
+    <div class="form-grid">
+
+      <div class="field full">
+        <label for="programmeName" data-en="Programme Name *" data-sw="Jina la Programu *">Programme Name *</label>
+        <input id="programmeName" required placeholder="Enter programme name">
+      </div>
+
+      <div class="field">
+        <label for="category" data-en="Programme Category *" data-sw="Aina ya Programu *">Programme Category *</label>
+        <select id="category" required>
+          <option value="" data-en="Select category" data-sw="Chagua aina">Select category</option>
+          <option value="Education" data-en="Education" data-sw="Elimu">Education</option>
+          <option value="Community Development" data-en="Community Development" data-sw="Maendeleo ya Jamii">Community Development</option>
+          <option value="Research" data-en="Research" data-sw="Utafiti">Research</option>
+          <option value="Innovation" data-en="Innovation" data-sw="Ubunifu">Innovation</option>
+          <option value="Infrastructure" data-en="Infrastructure" data-sw="Miundombinu">Infrastructure</option>
+          <option value="Other" data-en="Other" data-sw="Nyingine">Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="region" data-en="Region *" data-sw="Mkoa *">Region *</label>
+        <select id="region" required>
+          <option value="" data-en="Select region" data-sw="Chagua mkoa">Select region</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="district" data-en="District / Municipality" data-sw="Wilaya / Manispaa">District / Municipality</label>
+        <select id="district">
+          <option value="" data-en="Select region first" data-sw="Chagua mkoa kwanza">Select region first</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="manualDistrict" data-en="Manual District / Municipality Entry" data-sw="Ingiza Wilaya / Manispaa kwa Mkono">Manual District / Municipality Entry</label>
+        <input id="manualDistrict" placeholder="Enter verified administrative area">
+        <span class="help" data-en="Use this field for regions whose official administrative lists have not yet been verified."
+              data-sw="Tumia sehemu hii kwa mikoa ambayo orodha rasmi za maeneo ya kiutawala bado hazijathibitishwa.">
+          Use this field for regions whose official administrative lists have not yet been verified.
+        </span>
+      </div>
+
+      <div class="field">
+        <label for="institution" data-en="Institution / Implementing Organisation" data-sw="Taasisi / Shirika Linalotekeleza">Institution / Implementing Organisation</label>
+        <input id="institution" placeholder="Institution or organisation">
+      </div>
+
+      <div class="field">
+        <label for="contact" data-en="Contact Person" data-sw="Mhusika wa Mawasiliano">Contact Person</label>
+        <input id="contact" placeholder="Contact person">
+      </div>
+
+      <div class="field">
+        <label for="startDate" data-en="Programme Start Date" data-sw="Tarehe ya Kuanza">Programme Start Date</label>
+        <input type="date" id="startDate">
+      </div>
+
+      <div class="field">
+        <label for="endDate" data-en="Expected Completion Date" data-sw="Tarehe Inayotarajiwa ya Kukamilika">Expected Completion Date</label>
+        <input type="date" id="endDate">
+      </div>
+
+      <div class="field">
+        <label for="budget" data-en="Programme Budget (TZS)" data-sw="Bajeti ya Programu (TZS)">Programme Budget (TZS)</label>
+        <input type="number" id="budget" min="0" step="0.01" placeholder="0">
+      </div>
+
+      <div class="field">
+        <label for="status" data-en="Programme Status *" data-sw="Hali ya Programu *">Programme Status *</label>
+        <select id="status" required>
+          <option value="Proposed" data-en="Proposed" data-sw="Imependekezwa">Proposed</option>
+          <option value="Assessed" data-en="Assessed" data-sw="Imetathminiwa">Assessed</option>
+          <option value="Active" data-en="Active" data-sw="Inaendelea">Active</option>
+          <option value="Completed" data-en="Completed" data-sw="Imekamilika">Completed</option>
+        </select>
+      </div>
+
+      <div class="field full">
+        <label for="description" data-en="Programme Description" data-sw="Maelezo ya Programu">Programme Description</label>
+        <textarea id="description" placeholder="Describe the programme, objectives and intended beneficiaries"></textarea>
+      </div>
+
+      <div class="field full">
+        <label for="assessment" data-en="Assessment Notes" data-sw="Maelezo ya Tathmini">Assessment Notes</label>
+        <textarea id="assessment" placeholder="Record assessment findings, needs, challenges and recommendations"></textarea>
+      </div>
+
+      <div class="field full">
+        <label for="budgetNotes" data-en="Budget Records / Financial Notes" data-sw="Rekodi za Bajeti / Maelezo ya Fedha">Budget Records / Financial Notes</label>
+        <textarea id="budgetNotes" placeholder="Record budget allocation, expenditure, funding sources and financial observations"></textarea>
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button class="primary" type="submit" id="saveButton" data-en="Save Programme" data-sw="Hifadhi Programu">Save Programme</button>
+      <button class="secondary" type="button" onclick="resetForm()" data-en="Clear Form" data-sw="Futa Fomu">Clear Form</button>
+    </div>
+  </form>
+</section>
+
+<!-- RECORDS -->
+
+<section id="records" class="panel">
+  <h2 class="section-title" data-en="National Programme Records"
+      data-sw="Rekodi za Kitaifa za Programu">National Programme Records</h2>
+
+  <div class="filters">
+    <input id="searchInput" placeholder="Search programme, institution or location" oninput="renderRecords()">
+
+    <select id="filterRegion" onchange="renderRecords()">
+      <option value="" data-en="All Regions" data-sw="Mikoa Yote">All Regions</option>
+    </select>
+
+    <select id="filterStatus" onchange="renderRecords()">
+      <option value="" data-en="All Statuses" data-sw="Hali Zote">All Statuses</option>
+      <option value="Proposed" data-en="Proposed" data-sw="Imependekezwa">Proposed</option>
+      <option value="Assessed" data-en="Assessed" data-sw="Imetathminiwa">Assessed</option>
+      <option value="Active" data-en="Active" data-sw="Inaendelea">Active</option>
+      <option value="Completed" data-en="Completed" data-sw="Imekamilika">Completed</option>
+    </select>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th data-en="Programme" data-sw="Programu">Programme</th>
+          <th data-en="Category" data-sw="Aina">Category</th>
+          <th data-en="Region" data-sw="Mkoa">Region</th>
+          <th data-en="District / Municipality" data-sw="Wilaya / Manispaa">District / Municipality</th>
+          <th data-en="Budget (TZS)" data-sw="Bajeti (TZS)">Budget (TZS)</th>
+          <th data-en="Status" data-sw="Hali">Status</th>
+          <th data-en="Actions" data-sw="Vitendo">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="recordsBody">
+      </tbody>
+    </table>
+  </div>
+
+  <div id="emptyMessage" class="empty" data-en="No programmes registered yet."
+       data-sw="Hakuna programu zilizosajiliwa bado.">
+    No programmes registered yet.
+  </div>
+
+  <div class="actions">
+    <button class="secondary" onclick="exportCSV()" data-en="Export Records (CSV)" data-sw="Pakua Rekodi (CSV)">Export Records (CSV)</button>
+    <button class="secondary" onclick="window.print()" data-en="Print Records" data-sw="Chapisha Rekodi">Print Records</button>
+  </div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about" class="panel">
+  <h2 class="section-title" data-en="About the Platform" data-sw="Kuhusu Jukwaa">About the Platform</h2>
+
+  <p data-en="The Tanzania National Education & Community Development Platform is an independent initiative designed to support inclusive education, evidence-based programme assessment, research, innovation and sustainable community development across Tanzania."
+     data-sw="Jukwaa la Kitaifa la Elimu na Maendeleo ya Jamii Tanzania ni mpango huru ulioundwa kusaidia elimu jumuishi, tathmini ya programu inayotegemea ushahidi, utafiti, ubunifu na maendeleo endelevu ya jamii nchini Tanzania.">
+    The Tanzania National Education & Community Development Platform is an independent initiative designed to support inclusive education, evidence-based programme assessment, research, innovation and sustainable community development across Tanzania.
+  </p>
+
+  <p data-en="The platform provides a structured record of proposed, assessed, active and completed programmes. Regional records are maintained separately to support transparency, accountability and informed planning."
+     data-sw="Jukwaa linatoa mfumo wa kurekodi programu zilizopendekezwa, zilizotathminiwa, zinazoendelea na zilizokamilika. Rekodi za mikoa zinatunzwa tofauti ili kusaidia uwazi, uwajibikaji na mipango inayotegemea taarifa sahihi.">
+    The platform provides a structured record of proposed, assessed, active and completed programmes. Regional records are maintained separately to support transparency, accountability and informed planning.
+  </p>
+
+  <div class="notice" data-en="Administrative district and municipality lists must be populated using verified official data. The four Pemba districts are included as specified. This platform does not imply government endorsement."
+       data-sw="Orodha za wilaya na manispaa lazima zijazwe kwa kutumia taarifa rasmi zilizothibitishwa. Wilaya nne za Pemba zimejumuishwa kama ilivyoelekezwa. Jukwaa hili halimaanishi kuidhinishwa na Serikali.">
+    Administrative district and municipality lists must be populated using verified official data. The four Pemba districts are included as specified. This platform does not imply government endorsement.
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <strong>Tanzania National Education & Community Development Platform</strong>
+  <p>31 Regions • Education • Research • Innovation • Community Development</p>
+  <p>Independent initiative | Tanzania</p>
+  <p>© <span id="year"></span> Tanzania Education Development</p>
+</footer>
+
+<script>
+/* ==========================================
+   TANZANIA NATIONAL PLATFORM
+   REGIONS AND PEMBA DISTRICTS
+========================================== */
+
+const regions = [
+"Arusha",
+"Dar es Salaam",
+"Dar es Salaam",
+"Dodoma",
+"Geita",
+"Iringa",
+"Kagera",
+"Katavi",
+"Kigoma",
+"Kilimanjaro",
+"Lindi",
+"Manyara",
+"Mara",
+"Mbeya",
+"Morogoro",
+"Mtwara",
+"Mwanza",
+"Njombe",
+"Pwani",
+"Rukwa",
+"Ruvuma",
+"Shinyanga",
+"Simiyu",
+"Singida",
+"Songwe",
+"Tabora",
+"Tanga",
+"Kaskazini Pemba",
+"Kusini Pemba",
+"Kaskazini Unguja",
+"Kusini Unguja",
+"Mjini Magharibi"
+];
+
+// The national list contains 31 regions.
+// Remove the duplicate Dar es Salaam entry in the data source.
+const nationalRegions = [...new Set(regions)];
+
+const pembaDistricts = [
+"Micheweni",
+"Wete",
+"Chake Chake",
+"Mkoani"
+];
+
+const STORAGE_KEY = "tanzaniaEducationDevelopmentRecords";
+
+let programmes = [];
+let currentLanguage = "en";
+
+try {
+  programmes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  if (!Array.isArray(programmes)) programmes = [];
+} catch(error) {
+  programmes = [];
+}
+
+/* ==========================================
+   LANGUAGE
+========================================== */
+
+function toggleLanguage(){
+  currentLanguage = currentLanguage === "en" ? "sw" : "en";
+  document.documentElement.lang = currentLanguage;
+
+  document.querySelectorAll("[data-en]").forEach(el => {
+    el.textContent = el.dataset[currentLanguage];
+  });
+
+  document.getElementById("languageButton").textContent =
+    currentLanguage === "en" ? "Kiswahili" : "English";
+
+  document.getElementById("searchInput").placeholder =
+    currentLanguage === "en"
+    ? "Search programme, institution or location"
+    : "Tafuta programu, taasisi au eneo";
+
+  document.getElementById("manualDistrict").placeholder =
+    currentLanguage === "en"
+    ? "Enter verified administrative area"
+    : "Ingiza eneo la kiutawala lililothibitishwa";
+
+  updateRegionOptions();
+  updateDistrictOptions();
+  renderDashboard();
+  renderRecords();
+}
+
+/* ==========================================
+   REGIONS
+========================================== */
+
+function populateRegions(){
+  const regionSelect = document.getElementById("region");
+  const filter = document.getElementById("filterRegion");
+
+  nationalRegions.forEach(region => {
+    const option = new Option(region,region);
+    regionSelect.add(option);
+
+    filter.add(new Option(region,region));
+  });
+}
+
+function updateRegionOptions(){
+  const filter = document.getElementById("filterRegion");
+  const selected = filter.value;
+
+  filter.innerHTML = "";
+  filter.add(new Option(
+    currentLanguage === "en" ? "All Regions" : "Mikoa Yote",""
+  ));
+
+  nationalRegions.forEach(region => {
+    filter.add(new Option(region,region));
+  });
+
+  filter.value = selected;
+}
+
+/* ==========================================
+   DISTRICTS
+========================================== */
+
+function updateDistrictOptions(){
+  const region = document.getElementById("region").value;
+  const district = document.getElementById("district");
+  const manual = document.getElementById("manualDistrict");
+
+  district.innerHTML = "";
+
+  if(region === "Kaskazini Pemba" || region === "Kusini Pemba"){
+
+    district.add(new Option(
+      currentLanguage === "en"
+      ? "Select Pemba district"
+      : "Chagua wilaya ya Pemba",""
+    ));
+
+    pembaDistricts.forEach(name => {
+      district.add(new Option(name,name));
+    });
+
+    district.disabled = false;
+    manual.placeholder = currentLanguage === "en"
+      ? "Optional additional verified location"
+      : "Eneo jingine lililothibitishwa (si lazima)";
+
+  } else if(region){
+
+    district.add(new Option(
+      currentLanguage === "en"
+      ? "Official list pending verification"
+      : "Orodha rasmi inasubiri uthibitisho",""
+    ));
+
+    district.disabled = true;
+
+    manual.placeholder = currentLanguage === "en"
+      ? "Enter district / municipality manually"
+      : "Ingiza wilaya / manispaa kwa mkono";
+
+  } else {
+
+    district.add(new Option(
+      currentLanguage === "en"
+      ? "Select region first"
+      : "Chagua mkoa kwanza",""
+    ));
+
+    district.disabled = true;
+  }
+}
+
+document.getElementById("region").addEventListener(
+  "change",updateDistrictOptions
+);
+
+/* ==========================================
+   LOCAL STORAGE
+========================================== */
+
+function saveStorage(){
+  try {
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(programmes));
+    return true;
+  } catch(error) {
+    alert("Unable to save records. Browser storage may be full or unavailable.");
+    return false;
+  }
+}
+
+/* ==========================================
+   PROGRAMME REGISTRATION
+========================================== */
+
+document.getElementById("programmeForm").addEventListener(
+  "submit",function(event){
+
+  event.preventDefault();
+
+  const id = document.getElementById("editId").value;
+  const region = document.getElementById("region").value;
+  const districtChoice = document.getElementById("district").value;
+  const manualDistrict = document.getElementById("manualDistrict").value.trim();
+
+  if(!region){
+    alert(currentLanguage === "en" ? "Please select a region." : "Tafadhali chagua mkoa.");
+    return;
+  }
+
+  if(!districtChoice && !manualDistrict){
+    alert(currentLanguage === "en"
+      ? "Please select or manually enter a district / municipality."
+      : "Tafadhali chagua au ingiza wilaya / manispaa.");
+    return;
+  }
+
+  const record = {
+    id: id || (Date.now().toString() + Math.random().toString(16).slice(2)),
+    name: document.getElementById("programmeName").value.trim(),
+    category: document.getElementById("category").value,
+    region: region,
+    district: manualDistrict || districtChoice,
+    institution: document.getElementById("institution").value.trim(),
+    contact: document.getElementById("contact").value.trim(),
+    startDate: document.getElementById("startDate").value,
+    endDate: document.getElementById("endDate").value,
+    budget: Number(document.getElementById("budget").value) || 0,
+    status: document.getElementById("status").value,
+    description: document.getElementById("description").value.trim(),
+    assessment: document.getElementById("assessment").value.trim(),
+    budgetNotes: document.getElementById("budgetNotes").value.trim(),
+    updatedAt: new Date().toISOString()
+  };
+
+  if(!record.name){
+    alert("Programme name is required.");
+    return;
+  }
+
+  if(id){
+    const index = programmes.findIndex(p => p.id === id);
+    if(index !== -1) programmes[index] = record;
+  } else {
+    record.createdAt = record.updatedAt;
+    programmes.push(record);
+  }
+
+  if(!saveStorage()) return;
+
+  resetForm();
+  renderDashboard();
+  renderRecords();
+
+  alert(currentLanguage === "en"
+    ? "Programme record saved successfully."
+    : "Rekodi ya programu imehifadhiwa kikamilifu.");
+
+  document.getElementById("records").scrollIntoView({
+    behavior:"smooth"
+  });
+});
+
+/* ==========================================
+   RESET FORM
+========================================== */
+
+function resetForm(){
+  document.getElementById("programmeForm").reset();
+  document.getElementById("editId").value = "";
+  document.getElementById("district").disabled = true;
+
+  document.getElementById("district").innerHTML =
+    '<option value="">Select region first</option>';
+
+  document.getElementById("saveButton").textContent =
+    currentLanguage === "en" ? "Save Programme" : "Hifadhi Programu";
+}
+
+/* ==========================================
+   EDIT PROGRAMME
+========================================== */
+
+function editProgramme(id){
+  const p = programmes.find(item => item.id === id);
+  if(!p) return;
+
+  document.getElementById("editId").value = p.id;
+  document.getElementById("programmeName").value = p.name;
+  document.getElementById("category").value = p.category;
+  document.getElementById("region").value = p.region;
+
+  updateDistrictOptions();
+
+  const district = document.getElementById("district");
+  const manual = document.getElementById("manualDistrict");
+
+  if(p.region === "Kaskazini Pemba" || p.region === "Kusini Pemba"){
+    district.value = pembaDistricts.includes(p.district) ? p.district : "";
+    manual.value = pembaDistricts.includes(p.district) ? "" : p.district;
+  } else {
+    manual.value = p.district;
+  }
+
+  document.getElementById("institution").value = p.institution || "";
+  document.getElementById("contact").value = p.contact || "";
+  document.getElementById("startDate").value = p.startDate || "";
+  document.getElementById("endDate").value = p.endDate || "";
+  document.getElementById("budget").value = p.budget || "";
+  document.getElementById("status").value = p.status;
+  document.getElementById("description").value = p.description || "";
+  document.getElementById("assessment").value = p.assessment || "";
+  document.getElementById("budgetNotes").value = p.budgetNotes || "";
+
+  document.getElementById("saveButton").textContent =
+    currentLanguage === "en" ? "Update Programme" : "Sasisha Programu";
+
+  document.getElementById("register").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+/* ==========================================
+   DELETE PROGRAMME
+========================================== */
+
+function deleteProgramme(id){
+  const confirmText = currentLanguage === "en"
+    ? "Are you sure you want to delete this programme?"
+    : "Una uhakika unataka kufuta programu hii?";
+
+  if(!confirm(confirmText)) return;
+
+  programmes = programmes.filter(p => p.id !== id);
+
+  if(saveStorage()){
+    renderDashboard();
+    renderRecords();
+  }
+}
+
+/* ==========================================
+   DASHBOARD
+========================================== */
+
+function renderDashboard(){
+
+  document.getElementById("totalCount").textContent = programmes.length;
+
+  ["Proposed","Assessed","Active","Completed"].forEach(status => {
+
+    const count = programmes.filter(
+      p => p.status === status
+    ).length;
+
+    document.getElementById(
+      status.toLowerCase()+"Count"
+    ).textContent = count;
+  });
+}
+
+/* ==========================================
+   DISPLAY RECORDS
+========================================== */
+
+function escapeHTML(value){
+  return String(value ?? "").replace(/[&<>"']/g,char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
+}
+
+function renderRecords(){
+
+  const body = document.getElementById("recordsBody");
+  const search = document.getElementById("searchInput").value.toLowerCase();
+  const region = document.getElementById("filterRegion").value;
+  const status = document.getElementById("filterStatus").value;
+
+  body.innerHTML = "";
+
+  const filtered = programmes.filter(p => {
+
+    const searchable = [
+      p.name,p.category,p.region,p.district,p.institution,p.status
+    ].join(" ").toLowerCase();
+
+    return searchable.includes(search)
+      && (!region || p.region === region)
+      && (!status || p.status === status);
+  });
+
+  document.getElementById("emptyMessage").style.display =
+    filtered.length ? "none" : "block";
+
+  filtered.forEach(p => {
+
+    const row = document.createElement("tr");
+
+    const statusClass = "status-" + p.status.toLowerCase();
+
+    row.innerHTML = `
+      <td>
+        <strong>${escapeHTML(p.name)}</strong><br>
+        <small>${escapeHTML(p.institution || "")}</small>
+      </td>
+      <td>${escapeHTML(p.category)}</td>
+      <td>${escapeHTML(p.region)}</td>
+      <td>${escapeHTML(p.district)}</td>
+      <td>${Number(p.budget).toLocaleString("en-US")}</td>
+      <td><span class="status ${statusClass}">${escapeHTML(p.status)}</span></td>
+      <td>
+        <button class="secondary edit-btn">Edit</button>
+        <button class="danger delete-btn">Delete</button>
+      </td>
+    `;
+
+    row.querySelector(".edit-btn").onclick = () => editProgramme(p.id);
+    row.querySelector(".delete-btn").onclick = () => deleteProgramme(p.id);
+
+    body.appendChild(row);
+  });
+}
+
+/* ==========================================
+   CSV EXPORT
+========================================== */
+
+function exportCSV(){
+
+  if(!programmes.length){
+    alert(currentLanguage === "en"
+      ? "There are no records to export."
+      : "Hakuna rekodi za kupakua.");
+    return;
+  }
+
+  const headers = [
+    "Programme",
+    "Category",
+    "Region",
+    "District/Municipality",
+    "Institution",
+    "Contact",
+    "Start Date",
+    "End Date",
+    "Budget TZS",
+    "Status",
+    "Description",
+    "Assessment Notes",
+    "Budget Notes"
+  ];
+
+  const rows = programmes.map(p => [
+    p.name,p.category,p.region,p.district,p.institution,
+    p.contact,p.startDate,p.endDate,p.budget,p.status,
+    p.description,p.assessment,p.budgetNotes
+  ]);
+
+  const csv = [headers,...rows].map(row =>
+    row.map(value =>
+      '"' + String(value ?? "").replace(/"/g,'""') + '"'
+    ).join(",")
+  ).join("\n");
+
+  const blob = new Blob(["\uFEFF"+csv],{
+    type:"text/csv;charset=utf-8;"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "Tanzania-Education-Development-Records.csv";
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+
+/* ==========================================
+   INITIALISE PLATFORM
+========================================== */
+
+populateRegions();
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+renderDashboard();
+renderRecords();
+
+</script>
+
+</body>
+</html>
